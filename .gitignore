@@ -2,4 +2,4 @@
 *.html*.csv
 archive/
 PDF_Files/
-
+.vscode/
