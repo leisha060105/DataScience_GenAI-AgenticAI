@@ -1,0 +1,476 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select 10 + 20;
++---------+
+| 10 + 20 |
++---------+
+|      30 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select 10 * 20;
++---------+
+| 10 * 20 |
++---------+
+|     200 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select 10/5;
++--------+
+| 10/5   |
++--------+
+| 2.0000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select 12 % 5;
++--------+
+| 12 % 5 |
++--------+
+|      2 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> use nit
+Database changed
+mysql> CREATE TABLE customers(
+    -> ID int,
+    -> NAME varchar(60),
+    -> AGE int,
+    -> ADDRESS varchar(60),
+    -> ^C
+mysql> CREATE TABLE CUSTOMERS(
+    -> ID INT      NOT NULL,
+    -> NAME VARCHAR(20)      NOT NULL,
+    -> AGE INT         NOT NULL,
+    -> ADDRESS CHAR(25),
+    -> SALARY DECIMAL (18,2),
+    -> PRIMARY KEY(ID)
+    -> );
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> DESC CUSTOMERS;
++---------+---------------+------+-----+---------+-------+
+| Field   | Type          | Null | Key | Default | Extra |
++---------+---------------+------+-----+---------+-------+
+| ID      | int           | NO   | PRI | NULL    |       |
+| NAME    | varchar(20)   | NO   |     | NULL    |       |
+| AGE     | int           | NO   |     | NULL    |       |
+| ADDRESS | char(25)      | YES  |     | NULL    |       |
+| SALARY  | decimal(18,2) | YES  |     | NULL    |       |
++---------+---------------+------+-----+---------+-------+
+5 rows in set (0.05 sec)
+
+mysql> INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+    -> VALUES (1, 'Ramesh', 32, 'Ahmedabad', 2000.00 );
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+    -> VALUES (2, 'Khilan', 25, 'Delhi', 1500.00 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS;
++----+--------+-----+-----------+---------+
+| ID | NAME   | AGE | ADDRESS   | SALARY  |
++----+--------+-----+-----------+---------+
+|  1 | Ramesh |  32 | Ahmedabad | 2000.00 |
+|  2 | Khilan |  25 | Delhi     | 1500.00 |
++----+--------+-----+-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+    -> VALUES (3, 'kaushik', 23, 'Kota', 2000.00 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+    -> VALUES (4, 'Chaitali', 25, 'Mumbai', 6500.00 );
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+    -> VALUES (5, 'Hardik', 27, 'Bhopal', 8500.00 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+    -> VALUES (6, 'Komal', 22, 'MP', 4500.00 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS;
++----+----------+-----+-----------+---------+
+| ID | NAME     | AGE | ADDRESS   | SALARY  |
++----+----------+-----+-----------+---------+
+|  1 | Ramesh   |  32 | Ahmedabad | 2000.00 |
+|  2 | Khilan   |  25 | Delhi     | 1500.00 |
+|  3 | kaushik  |  23 | Kota      | 2000.00 |
+|  4 | Chaitali |  25 | Mumbai    | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal    | 8500.00 |
+|  6 | Komal    |  22 | MP        | 4500.00 |
++----+----------+-----+-----------+---------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO CUSTOMERS
+    -> VALUES (7, 'Muffy', 24, 'Indore', 10000.00 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMERS
+    -> ^C
+mysql> SELECT * FROM CUSTOMERS;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY > 5000;
++----+----------+-----+---------+----------+
+| ID | NAME     | AGE | ADDRESS | SALARY   |
++----+----------+-----+---------+----------+
+|  4 | Chaitali |  25 | Mumbai  |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal  |  8500.00 |
+|  7 | Muffy    |  24 | Indore  | 10000.00 |
++----+----------+-----+---------+----------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY = 2000;
++----+---------+-----+-----------+---------+
+| ID | NAME    | AGE | ADDRESS   | SALARY  |
++----+---------+-----+-----------+---------+
+|  1 | Ramesh  |  32 | Ahmedabad | 2000.00 |
+|  3 | kaushik |  23 | Kota      | 2000.00 |
++----+---------+-----+-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY != 2000;
++----+----------+-----+---------+----------+
+| ID | NAME     | AGE | ADDRESS | SALARY   |
++----+----------+-----+---------+----------+
+|  2 | Khilan   |  25 | Delhi   |  1500.00 |
+|  4 | Chaitali |  25 | Mumbai  |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal  |  8500.00 |
+|  6 | Komal    |  22 | MP      |  4500.00 |
+|  7 | Muffy    |  24 | Indore  | 10000.00 |
++----+----------+-----+---------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY <> 2000;
++----+----------+-----+---------+----------+
+| ID | NAME     | AGE | ADDRESS | SALARY   |
++----+----------+-----+---------+----------+
+|  2 | Khilan   |  25 | Delhi   |  1500.00 |
+|  4 | Chaitali |  25 | Mumbai  |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal  |  8500.00 |
+|  6 | Komal    |  22 | MP      |  4500.00 |
+|  7 | Muffy    |  24 | Indore  | 10000.00 |
++----+----------+-----+---------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY >= 2000;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY >= 6500;
++----+----------+-----+---------+----------+
+| ID | NAME     | AGE | ADDRESS | SALARY   |
++----+----------+-----+---------+----------+
+|  4 | Chaitali |  25 | Mumbai  |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal  |  8500.00 |
+|  7 | Muffy    |  24 | Indore  | 10000.00 |
++----+----------+-----+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE >= 25 AND SALARY >= 6500;
++----+----------+-----+---------+---------+
+| ID | NAME     | AGE | ADDRESS | SALARY  |
++----+----------+-----+---------+---------+
+|  4 | Chaitali |  25 | Mumbai  | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal  | 8500.00 |
++----+----------+-----+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE >= 25 OR SALARY >= 6500;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE IS NOT NULL;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE NAME LIKE 'kO%';
++----+-------+-----+---------+---------+
+| ID | NAME  | AGE | ADDRESS | SALARY  |
++----+-------+-----+---------+---------+
+|  6 | Komal |  22 | MP      | 4500.00 |
++----+-------+-----+---------+---------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE IN (25,27);
++----+----------+-----+---------+---------+
+| ID | NAME     | AGE | ADDRESS | SALARY  |
++----+----------+-----+---------+---------+
+|  2 | Khilan   |  25 | Delhi   | 1500.00 |
+|  4 | Chaitali |  25 | Mumbai  | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal  | 8500.00 |
++----+----------+-----+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE BETWEEN 25 AND 27;
++----+----------+-----+---------+---------+
+| ID | NAME     | AGE | ADDRESS | SALARY  |
++----+----------+-----+---------+---------+
+|  2 | Khilan   |  25 | Delhi   | 1500.00 |
+|  4 | Chaitali |  25 | Mumbai  | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal  | 8500.00 |
++----+----------+-----+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT AGE FROM CUSTOMERS
+    -> WHERE EXISTS (SELECT AGE FROM CUSTOMERS WHERE SALARY > 6500);
++-----+
+| AGE |
++-----+
+|  32 |
+|  25 |
+|  23 |
+|  25 |
+|  27 |
+|  22 |
+|  24 |
++-----+
+7 rows in set (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS
+    -> WHERE AGE > ALL (SELECT AGE FROM CUSTOMERS WHERE SALARY > 6500);
++----+--------+-----+-----------+---------+
+| ID | NAME   | AGE | ADDRESS   | SALARY  |
++----+--------+-----+-----------+---------+
+|  1 | Ramesh |  32 | Ahmedabad | 2000.00 |
++----+--------+-----+-----------+---------+
+1 row in set (0.01 sec)
+
+mysql> WHERE AGE > ANY (SELECT AGE FROM CUSTOMERS WHERE SALARY > 6500);
+ERROR 1064 (42000): You have an error in your SQL syntax; checkthe manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE AGE > ANY (SELECT AGE FROM CUSTOMERS WHERE SALARY > 6500)' at line 1
+mysql> SELECT * FROM CUSTOMERS WHERE AGE > ANY (SELECT AGE FROMCUSTOMERS WHERE SALARY > 6500);
++----+----------+-----+-----------+---------+
+| ID | NAME     | AGE | ADDRESS   | SALARY  |
++----+----------+-----+-----------+---------+
+|  1 | Ramesh   |  32 | Ahmedabad | 2000.00 |
+|  2 | Khilan   |  25 | Delhi     | 1500.00 |
+|  4 | Chaitali |  25 | Mumbai    | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal    | 8500.00 |
++----+----------+-----+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY = 10000;
++----+-------+-----+---------+----------+
+| ID | NAME  | AGE | ADDRESS | SALARY   |
++----+-------+-----+---------+----------+
+|  7 | Muffy |  24 | Indore  | 10000.00 |
++----+-------+-----+---------+----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT (15 + 6) AS ADDITION;
++----------+
+| ADDITION |
++----------+
+|       21 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*) AS "rECORDS" FROM CUSTOMERS;
++---------+
+| rECORDS |
++---------+
+|       7 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(*) AS "RECORDS" FROM CUSTOMERS;
++---------+
+| RECORDS |
++---------+
+|       7 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURRENT_TIMESTAMP;
++---------------------+
+| CURRENT_TIMESTAMP   |
++---------------------+
+| 2026-06-11 15:50:52 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT GETDATE();;
+ERROR 1305 (42000): FUNCTION nit.GETDATE does not exist
+ERROR:
+No query specified
+
+mysql> SELECT GETDATE();
+ERROR 1305 (42000): FUNCTION nit.GETDATE does not exist
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| nit                |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT GETDATE();
+ERROR 1305 (42000): FUNCTION nit.GETDATE does not exist
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2026-06-11 15:53:12 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURDATE():
+    -> ^C
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2026-06-11 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT GETDATE();
+ERROR 1305 (42000): FUNCTION nit.GETDATE does not exist
+mysql> CREATE DATABASE testDB;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| nit                |
+| performance_schema |
+| sys                |
+| testdb             |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> DROP DATABASE testDB;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| nit                |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT ID, NAME, SALARY FROM CUSTOMERS;
++----+----------+----------+
+| ID | NAME     | SALARY   |
++----+----------+----------+
+|  1 | Ramesh   |  2000.00 |
+|  2 | Khilan   |  1500.00 |
+|  3 | kaushik  |  2000.00 |
+|  4 | Chaitali |  6500.00 |
+|  5 | Hardik   |  8500.00 |
+|  6 | Komal    |  4500.00 |
+|  7 | Muffy    | 10000.00 |
++----+----------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+7 rows in set (0.00 sec)
+
+mysql>
